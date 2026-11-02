@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Somme</title>
+    <script>
+        function somme(){
+            let resultat = document.querySelector("#resultat");
+            let a = Number(document.querySelector("#nombre1").value);
+            let b = Number(document.querySelector("#nombre2").value);
+            resultat.innerHTML = a + b ;
+        }
+        document.addEventListener("DOMContentLoaded", function (){
+            let bouton = document.querySelector("#bouton");
+            bouton.addEventListener("click",somme)
+        });
+    </script>
+</head>
+<body>
+    <input type="text" name="nombre1" id="nombre1">
+    + <input type="text" name="nombre2" id="nombre2">
+    <button id="bouton">Valider</button>
+    Résultat :<span id="resultat"></span>
+</body>
+</html>

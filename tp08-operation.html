@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+          function operation(){
+            if (document.querySelector("#listeOperateur").value === "+") {
+                return somme()
+            } else if (document.querySelector("#listeOperateur").value === "-") {
+                return soustraction()
+            } else if(document.querySelector("#listeOperateur").value === "*") {
+                return multiplication()
+            } else if(document.querySelector("#listeOperateur").value === "/"){
+                return division()
+            }
+          }
+          
+          function somme(){
+            let resultat = document.querySelector("#resultat");
+            let a = Number(document.querySelector("#nombre1").value);
+            let b = Number(document.querySelector("#nombre2").value);
+            resultat.innerHTML = "Le résultat de la somme est " + (a + b) ;
+        }
+            function soustraction(){
+            let resultat = document.querySelector("#resultat");
+            let a = Number(document.querySelector("#nombre1").value);
+            let b = Number(document.querySelector("#nombre2").value);
+            resultat.innerHTML = "Le résultat de la soustraction est " + (a - b) ;
+            }
+
+            function multiplication(){
+            let resultat = document.querySelector("#resultat");
+            let a = Number(document.querySelector("#nombre1").value);
+            let b = Number(document.querySelector("#nombre2").value);
+            resultat.innerHTML = "Le résultat de la multiplication est " + (a * b) ;
+            }
+
+            function division(){
+            let resultat = document.querySelector("#resultat");
+            let a = Number(document.querySelector("#nombre1").value);
+            let b = Number(document.querySelector("#nombre2").value);
+            resultat.innerHTML = "Le résultat de la division est " + (a / b) ;
+            }
+
+        document.addEventListener("DOMContentLoaded", function (){
+            let bouton = document.querySelector("#bouton");
+            bouton.addEventListener("click",operation)
+        });
+    </script>
+</head>
+<body>
+    <input type="text" name="nombre1" id="nombre1">
+    <label for="operation"></label>
+    <select name="operation" id="listeOperateur">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+    </select>
+    <input type="text" name="nombre2" id="nombre2">
+    
+    <button id="bouton">Valider</button>
+    <p id="resultat"></p>
+</body>
+</html>
