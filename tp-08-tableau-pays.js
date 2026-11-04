@@ -1,17 +1,36 @@
-let data = {"polluant":"CO2", 
-    "unite":"milliards de tonnes",
-     "annee":2017, 
-     "pays":
-     [{"nom":"Chine", "valeur":9.26, "pourcentage":28.2, "code":"cn"}, 
-        {"nom":"Etats-Unis", "valeur":4.76, "pourcentage":14.5, "code":"us"}, 
-        {"nom":"Inde", "valeur":2.16, "pourcentage":6.6, "code":"in"}, 
-        {"nom":"Russie", "valeur":1.54, "pourcentage":4.7, "code":"ru"}, {"nom":"Japon", "valeur":1.13, "pourcentage":3.4, "code":"jp"}, 
-        {"nom":"Allemagne", "valeur":0.72, "pourcentage":2.2, "code":"de"},
-        {"nom":"Corée du Sud", "valeur":0.6, "pourcentage":1.8, "code":"kr"}, 
-        {"nom":"Iran", "valeur":0.57, "pourcentage":1.7, "code":"ir"}, 
-        {"nom":"Canada", "valeur":0.55, "pourcentage":1.7, "code":"ca"}]}
+
+
+function triMaxMin(){
+    let min = document.querySelector("#min").value;
+    let max = document.querySelector("#max").value;
+    let messageErreur = document.querySelector("#messageErreur");
+    if (min === "") {
+        return min = 0;
+    }
+    if (max === "") {
+        return max = Number.MAX_VALUE;
+    }
+    if( min < 0 || max < 0) {
+        return messageErreur.innerHTML = "Veuillez renseigner des valeurs positives"
+    } else if (min > max){
+        return messageErreur.innerHTML = "Min > Max, veuillez choisir une autre valeur pour min";
+    } else {
+        return filtrer()
+    }
+}
 
 function initialiserDonnees(){
+    fetch ("https://digicode.cleverapps.io/json/pays/pollution")
+    .then(function(reponse) {
+        return reponse.json();
+    })
+    .then(function(data){
+        console.log(data);
+        initialiserHtml(data);
+    });
+}
+
+function initialiserHtml(data){
     let h1 = document.querySelector("#titre");
     let h2 = document.querySelector("#annee");
     let corps = document.querySelector("#corps");
@@ -29,4 +48,17 @@ function initialiserDonnees(){
     }
     corps.innerHTML=texte;
 }
+
+function filtrer() {
+    let texte ="";
+    for (let i=min; i<=max; i++) {
+        let pays = data.pays[i];
+        texte+=`<tr><td><img src="https://flagcdn.com/24x18/${pays.code}.png"></td>
+                <td>${pays.nom}</td>
+                <td>${pays.valeur}</td>
+                <td>${pays.pourcentage} %</td></tr>`;
+    }
+    corps.innerHTML=texte;
+} 
+
 

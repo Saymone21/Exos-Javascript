@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function envoi(){
+            let nom = document.querySelector("[name=nom]").value;
+            let prenom = document.querySelector("[name=prenom]").value;
+            let genre = document.querySelector("[name=genre]").value;
+            let dateNaissance = document.querySelector("[name=dateNaissance]").value;
+            let lieuNaissance = document.querySelector("[name=lieuNaissance]").value;
+            let departementNaissance = document.querySelector("[name=departementNaissance]").value;
+            let numeroRue = document.querySelector("[name=numeroRue]").value;
+            let libelleRue = document.querySelector("[name=libelleRue]").value;
+            let codePostal = document.querySelector("[name=codePostal]").value;
+            let ville = document.querySelector("[name=ville]").value;
+
+        let objet = {
+            "id": null,
+            "idCreateur":"Simon",
+            "nom":nom, 
+            "prenom" :prenom,
+            "genre":genre, 
+            "dateNaissance":dateNaissance, "lieuNaissance":lieuNaissance, "departementNaissance":departementNaissance, "numeroRue":numeroRue, 
+            "libelleRue":libelleRue, "codePostal":codePostal, "ville":ville,
+        }
+
+        const requestOptions = {
+            method: "POST", headers: {'Content-Type' : 'application/json'},
+            body : JSON.stringify(objet)
+        }
+
+        fetch('https://digicode.cleverapps.io/utilisateurs/',requestOptions)
+            .then(rep => rep.text())
+            .then (text => console.log(text));
+
+        /*function rafraichirTableauHtml(){
+        fetch('https://digicode.cleverapps.io/utilisateurs/')
+        .then (rep => rep.json())
+        .then function(donnees) {
+           let corps = document.querySelector("#corps");
+        }
+        }*/
+    }    
+    </script>
+</head>
+<body>
+    <h1>Gestion des utilisateurs</h1>
+    <form action="">
+        <input type="text" name="nom">Nom de l'utilisateur <br>
+        <input type="text" name="prenom">Prénom<br>
+        <select name="genre" id="">Genre<br>
+        <option value="femme">Femme</option>
+        <option value="homme">Homme</option>
+        </select>
+        <input type="date" name="dateNaissance">Date de naissance<br>
+        <input type="text" name="lieuNaissance">Lieux de naissance<br>
+        <input type="text" name="departementNaissance">Département de naissance<br>
+        <input type="text" name="numeroRue">Numéro de rue<br>
+        <input type="text" name="libelleRue">Libellé de Rue<br>
+        <input type="text" name="codePostal">Code postal<br>
+        <input type="text" name="ville">Ville<br>
+
+        <button onclick="envoi()">Envoyer</button>
+    </form>
+</body>
+</html>

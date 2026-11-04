@@ -6,10 +6,16 @@
     <title>Document</title>
     <script src="tp-08-tableau-pays.js"></script>
 </head>
-<body>
+<body onload="initialiserDonnees()">
     <h1 id="titre"></h1>
     <h2 id="annee"></h2>
 
+    <label for="minimum">Minimum</label>
+    <input type="text" id="min" name="minimum">
+    <label for="maximum">Maximum</label>
+    <input type="text" id="max" name="maximum">
+    <button onclick="triMaxMin()">Valider</button>
+    <span id="messageErreur">
     <table>
     <thead>
         <tr>
